@@ -7,13 +7,13 @@ startBtnRef.addEventListener('click', onButtonStart);
 stopBtnRef.addEventListener('click', onButtonStop);
 
 function onButtonStart(){
-    randomBg = setInterval(() => {
+    const randomBg = setInterval(() => {
         bodyRef.style.backgroundColor = `${getRandomHexColor()}`;
     }, 1000);
     toggleActiveBtn(stopBtnRef, startBtnRef);
 };
 
-function onButtonStop(){
+function onButtonStop(randomBg){
     clearInterval(randomBg);
     toggleActiveBtn(startBtnRef, stopBtnRef);
 };
