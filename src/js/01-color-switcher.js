@@ -1,19 +1,19 @@
 const startBtnRef = document.querySelector('button[data-start]');
 const stopBtnRef = document.querySelector('button[data-stop]');
-const bodyRef = document.querySelector('body');
 stopBtnRef.disabled = true;
+let randomBg = null;
 
 startBtnRef.addEventListener('click', onButtonStart);
 stopBtnRef.addEventListener('click', onButtonStop);
 
 function onButtonStart(){
-    const randomBg = setInterval(() => {
-        bodyRef.style.backgroundColor = `${getRandomHexColor()}`;
+    randomBg = setInterval(() => {
+        document.body.style.backgroundColor = `${getRandomHexColor()}`;
     }, 1000);
     toggleActiveBtn(stopBtnRef, startBtnRef);
 };
 
-function onButtonStop(randomBg){
+function onButtonStop(){
     clearInterval(randomBg);
     toggleActiveBtn(startBtnRef, stopBtnRef);
 };
