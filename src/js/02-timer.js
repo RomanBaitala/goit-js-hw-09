@@ -11,6 +11,7 @@ const minutesRef = document.querySelector('span[data-minutes]');
 const secondsRef = document.querySelector('span[data-seconds]');
 startBtnRef.disabled = true;
 let currentTime = Date.now();
+let intervalId = null;
 
 stopBtnRef.addEventListener('click', () => {
     clearInterval(intervalId);
@@ -20,7 +21,7 @@ stopBtnRef.addEventListener('click', () => {
     secondsRef.textContent = '00';
     startBtnRef.disabled = false;
     stopBtnRef.disabled = true;
-})
+});
 
 startBtnRef.addEventListener('click', () => {
     intervalId = setInterval(timer, 1000);
