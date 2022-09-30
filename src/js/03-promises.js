@@ -12,17 +12,16 @@ function onSubmit(evt){
   if (delayVal < 0 || stepVal < 0  || amountVal < 1) {
     Notiflix.Notify.failure('All values must be bigger than zero', {position: 'center-center'});
     return;
-  } else {
-    for (let position = 0; position < amountVal; position+=1) {
-      createPromise(position, delayVal)
-      .then(({ position, delay }) => {
-        Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`, {position: 'center-center'});
-      })
-      .catch(({ position, delay }) => {
-        Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`, {position: 'center-center'});
-      });
-      delayVal += stepVal;
-    };
+  }
+  for (let position = 0; position < amountVal; position+=1) {
+    createPromise(position, delayVal)
+    .then(({ position, delay }) => {
+      Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`, {position: 'center-center'});
+    })
+    .catch(({ position, delay }) => {
+      Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`, {position: 'center-center'});
+    });
+    delayVal += stepVal;
   };
 };
 
@@ -31,9 +30,9 @@ function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (shouldResolve) {
-        resolve(position, delay)
+        resolve({position, delay})
       } else {
-        reject(position, delay)
+        reject({position, delay})
       }
     }, delay)
   })

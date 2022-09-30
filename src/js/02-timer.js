@@ -20,12 +20,15 @@ stopBtnRef.addEventListener('click', () => {
     minutesRef.textContent = '00';
     secondsRef.textContent = '00';
     startBtnRef.disabled = false;
+    inputRef.disabled = false;
     stopBtnRef.disabled = true;
+    inputRef.focus()
 });
 
 startBtnRef.addEventListener('click', () => {
     intervalId = setInterval(timer, 1000);
     startBtnRef.disabled = true;
+    inputRef.disabled = true;
     stopBtnRef.disabled = false;
 });
 
